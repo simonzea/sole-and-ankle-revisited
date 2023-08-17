@@ -15,9 +15,10 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 
   return (
     <Overlay>
-      <Content>
+      <Content aria-label='Sales menu'>
       <ModalMenuButton onClick={onDismiss}>
-      <Icon id="close" strokeWidth={2} color={COLORS.gray[900]}></Icon>
+        <Icon id="close" strokeWidth={2} color={COLORS.gray[900]}></Icon>
+        <VisuallyHidden>Dismiss modal</VisuallyHidden>
       </ModalMenuButton>
       <Nav>
         <NavLink href="/sale">Sale</NavLink>
@@ -37,7 +38,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   );
 };
 
-const Overlay = styled.div`
+const Overlay = styled(DialogOverlay)`
   position: relative;
   display: none;
   isolation: isolate;
@@ -49,7 +50,7 @@ const Overlay = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled(DialogContent)`
   background: ${COLORS.white};
   padding: 26px 16px 32px 16px;
   position: fixed;
