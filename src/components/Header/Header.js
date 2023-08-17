@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import { COLORS, WEIGHTS } from '../../constants';
+import { COLORS, WEIGHTS, QUERIES } from '../../constants';
 import Logo from '../Logo';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
+import Icon from '../Icon';
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
@@ -22,14 +23,21 @@ const Header = () => {
           <Logo />
         </Side>
         <Nav>
-          <NavLink href="/sale">Sale</NavLink>
+          <NavLink href="/sale">SaleSaleSale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
+          <NavLink href="/men">MenCollections</NavLink>
+          <NavLink href="/women">WomenCollections</NavLink>
+          <NavLink href="/kids">KidsCollections</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
         <Side />
+        <MovileMenu>
+          <Icon id="shopping-bag" strokeWidth={2} color={COLORS.gray[900]}/>
+          <Icon id="search" strokeWidth={2} color={COLORS.gray[900]}/>
+          <MovileMenuButton onClick={() => setShowMobileMenu(true)}>
+            <Icon id="menu" strokeWidth={2} color={COLORS.gray[900]}></Icon>
+          </MovileMenuButton>
+        </MovileMenu>
       </MainHeader>
 
       <MobileMenu
@@ -46,12 +54,25 @@ const MainHeader = styled.div`
   padding: 18px 32px;
   height: 72px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+  overflow: auto;
+
+  @media ${QUERIES.tabletAndDown} {
+    border-top: 4px solid ${COLORS.gray[900]};
+    align-items: center;
+  }
 `;
 
 const Nav = styled.nav`
   display: flex;
-  gap: 48px;
+  gap: clamp(
+    1rem,
+    1vw + 1rem,
+    3rem
+  );
   margin: 0px 48px;
+  @media ${QUERIES.tabletAndDown} {
+    display: none;
+  }
 `;
 
 const Side = styled.div`
@@ -68,6 +89,23 @@ const NavLink = styled.a`
   &:first-of-type {
     color: ${COLORS.secondary};
   }
+`;
+
+const MovileMenu = styled.div`
+  display: none;
+  @media ${QUERIES.tabletAndDown} {
+    display: flex;
+    gap: clamp(
+      1rem,
+      1.5dvw + 1rem,
+      2rem
+    );
+  }
+`;
+
+const MovileMenuButton = styled.button`
+    background-color: white;
+    border: 0;
 `;
 
 export default Header;
