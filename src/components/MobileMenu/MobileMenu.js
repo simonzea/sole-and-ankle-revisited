@@ -39,11 +39,10 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
 };
 
 const Overlay = styled(DialogOverlay)`
-  position: relative;
+  position: fixed;
   display: none;
-  isolation: isolate;
-  background: hsl(0deg 0% 0% / 0.25);
-  z-index:1;
+  background: hsl(220deg 5% 40% / 0.8);
+  inset: 0;
 
   @media ${QUERIES.tabletAndDown} {
     display: revert;
